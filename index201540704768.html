@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+   
+    <title>古诗欣赏 | jQuery 加载示例</title>
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+  
+        <script type="text/javascript">
+   	      //TODO 使用load方法动态加载指定的文件到id为content的元素
+         $(function() {
+						$("li").css("cursor", "pointer")
+                               .click(function(){
+								var file = $(this).attr("id")+".html";							 
+								$("#content").load(file, function() {
+
+ //加载的内容添加动态效果，图片淡入fadeIn，中文和英文采用向下滑动slideDown，效果时间3秒钟
+									$("#photo").hide().fadeIn(3000);
+									$("#chinese").hide().slideDown(3000);
+									$("#english").hide().delay(3000).slideDown(3000);
+								});
+
+								$("li").removeClass("selected");
+								$(this).addClass("selected");
+							});
+							
+							$("li").mouseover(function(){
+								$("li").removeClass("selected1");
+								$(this).addClass("selected1");
+							});
+					})
+//完成后重命名文件为index_<学号>.html提交
+</script>
+           </script>
+    <style>
+        header {
+            background-color: #666;
+            padding: 20px;
+            font-family: "华文新魏";
+            font-size: 36px;
+            color: #fff
+        }
+
+        aside {
+            float: left;
+            width: 24%;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', "楷体";
+            font-size: 24px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0px
+        }
+
+        li {
+            padding: 5px
+        }
+
+        #content {
+            float: right;
+            width: 76%;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', "楷体";
+            font-size: 24px;
+            min-height: 680px;
+        }
+
+        #article_eng {
+            padding: 10px
+        }
+
+        .selected {
+            background-color: #333;
+            color: #fff;
+        }
+
+        img {
+            width: 50%
+        }
+
+        body,
+        a {
+            font-size: 12px
+        }
+
+        a {
+            color: #333
+        }
+
+        footer {
+            width: 100%;
+            clear: both;
+            color: #333;
+            padding: 6px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <header>古诗欣赏</header>
+    <aside>
+        <ul>
+            <li id="poem1">《田园乐》</li>
+            <li id="poem2">《与诸子登岘山》</li>
+            <li id="poem3">《过故人庄》</li>
+            <li id="poem4">《送魏万之京》</li>
+            <li id="poem5">《岁暮归南山》</li>
+            <li id="poem6">《清明》</li>
+        </ul>
+    </aside>
+    <div id="content">请选择古诗</div>
+    <footer><span id="status"></span> 示例素材整理自 “<a href="http://www.kekenet.com/menu/14292/" target="_blank">可可英语</a>”</footer>
+</body>
+
+</html>

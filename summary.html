@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>古诗欣赏 | jQuery 加载示例</title>
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            setInterval("getVote()", 1000);
+        })
+
+        function getVote() {
+            $.ajax({
+                type: "GET",
+                url: "summary.php",
+                dataType: "json",
+                success: function (result) {
+                    $.each(result, function (index, element) {
+                        //console.log(element[0] + "=" + element[1]);
+                        $("#poem"+ element[0]).children(".bar").attr("title", element[1]).animate({width: parseInt(element[1])*10}, 4000);
+                    })
+                }
+            })
+        }
+    </script>
+    <style>
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', "楷体"; 
+            font-size: 24px;
+        }
+        header {
+            background-color: #666;
+            padding: 20px;
+            font-family: "华文新魏"; 
+            font-size: 36px;
+            color: #fff
+        }
+        span {
+            display: block;
+            padding-bottom: 15px;
+        }
+        .bar {
+            background-color: red;
+            border: 1px solid darkred;
+            height: 12px;
+            width:1px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>古诗欣赏</header>
+    <span id="poem1">《田园乐》<div class="bar"></div></span>
+    <span id="poem2">《与诸子登岘山》<div class="bar"></div></span>
+    <span id="poem3">《过故人庄》<div class="bar"></div></span>
+    <span id="poem4">《送魏万之京》<div class="bar"></div></span>
+    <span id="poem5">《岁暮归南山》<div class="bar"></div></span>
+    <span id="poem6">《清明》<div class="bar"></div></span>
+</body>
+
+</html>
